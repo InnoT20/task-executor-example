@@ -1,0 +1,8 @@
+services:
+  App\Infrastructure\Service\Task\:
+    resource: '%kernel.project_dir%/src/Infrastructure/Service/Task/**/*Task.php'
+    tags: ['page.tasks']
+
+  App\Infrastructure\Service\Task\TaskExecutorService:
+    arguments:
+      $tasks: !tagged_iterator { tag: page.tasks, index_by: name }
